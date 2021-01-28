@@ -1,0 +1,15 @@
+
+struct comp {
+    bool operator() (const PLL& lhs, const PLL& rhs) const {
+        ll l1= lhs.ss-lhs.ff+1;
+        ll l2= rhs.ss-rhs.ff+1;
+        if(l1!=l2)
+        {
+            return l1>l2;
+        }
+        else
+        {
+            return lhs.ff<rhs.ff;
+        }
+    }
+};

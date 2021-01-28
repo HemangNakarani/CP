@@ -1,0 +1,22 @@
+ll power(ll x,ll y)
+{
+    ll res = 1;
+    x = x % RMOD;
+    while (y > 0)
+    {
+        if (y & 1)
+        {
+          res = (res*x)%RMOD;
+        }
+        y = y>>1;
+        x = (x*x) % RMOD;
+    }
+
+    return res;
+}
+
+
+/*ll inverse(ll x)
+{
+      return power(x,RMOD - 2);
+}*/

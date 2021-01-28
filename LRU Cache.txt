@@ -1,0 +1,66 @@
+#include<bits/stdc++.h>
+
+
+class LRUCache {   
+    
+unordered_map<int , int >  vp;
+unordered_map<int , list<int>::iterator>  mp;
+list<int> ls;
+int siz;
+
+    
+public:
+    LRUCache(int capacity)
+    {
+        mp.clear();
+        vp.clear();
+        ls.clear();
+        siz=capacity;
+    }
+    
+    int get(int x) 
+    {
+        
+        
+        if(mp.find(x) == mp.end())
+        { 
+            return -1;
+        } 
+       else
+       {
+            
+            ls.push_front(x);
+            ls.erase(mp[x]); 
+            mp[x] = ls.begin(); 
+            
+            return vp[x];
+       }
+
+        
+    }
+    
+    void put(int x, int value) {
+        
+        if(mp.find(x) == mp.end())
+            { 
+                if (ls.size() == siz)
+                { 
+                    int last = ls.back(); 
+                    ls.pop_back(); 
+                    mp.erase(last); 
+                } 
+                
+                ls.push_front(x); 
+                mp[x] = ls.begin();
+                vp[x]= value;
+            } 
+            else
+            {
+                    ls.erase(mp[x]); 
+                    ls.push_front(x); 
+                    mp[x] = ls.begin(); 
+                    vp[x]=value;
+            }
+        
+    }
+};

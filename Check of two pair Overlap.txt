@@ -1,0 +1,9 @@
+PLL isOverlap(PLL a,PLL b)
+{
+    PLL ap;
+    ap.ff= max(a.ff,b.ff);
+    ap.ss= min(a.ss,b.ss);
+
+    if(ap.ff<=ap.ss)return ap;
+    else return {MINF,MAXF};
+}

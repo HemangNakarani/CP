@@ -1,0 +1,33 @@
+ll C[3000][3000];
+
+ll Pre()
+{
+  ll n=2005,k=2005;
+	ll i, j;
+
+	for (i = 0; i <= n; i++)
+	{
+		for (j = 0; j <= min(i, k); j++)
+		{
+			if (j == 0 || j == i)
+				C[i][j] = 1;
+			else
+				C[i][j] = C[i - 1][j - 1] + C[i - 1][j];
+            C[i][j]%=RMOD;
+		}
+	}
+
+	return C[n][k];
+}
+
+Factorial Count;
+
+ll fact[300000];
+void prefact()
+{
+    fact[0]=1;
+    for(ll i=1;i<=300000;i++)
+    {
+        fact[i]= (fact[i-1]*i)%RMOD;
+    }
+}

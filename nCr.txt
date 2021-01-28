@@ -1,0 +1,44 @@
+
+ll xgcd(ll a, ll b, ll &x, ll &y)
+{
+  	if(a==0)
+  	{
+  		x=0;
+  		y=1;
+  		return b;
+  	}
+  	ll x1, y1;
+  	ll d = xgcd(b % a, a, x1, y1);
+  	x = y1 - (b/a)*x1;
+  	y = x1;
+  	return d;
+}
+
+int modular_inverse(int a, int m)
+{
+  	ll x, y;
+  	ll g=xgcd(a, m, x, y);
+  	if(g!=1)
+  		return -1;
+  	else
+  	{
+  		x=(x%m + m)%m;
+  		return x;
+  	}
+}
+
+
+ll factorial[N];
+void AllFactorials(ll m)
+{
+    factorial[0] = 1;
+    for (int i = 1; i <= N; i++)
+    {
+      factorial[i] = factorial[i - 1] * i % m;
+    }
+}
+
+ll nCr(int n, int k) {
+    return factorial[n] * modular_inverse(factorial[k],MOD) % MOD * modular_inverse(factorial[n - k],MOD) % MOD;
+}
+

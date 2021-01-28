@@ -1,0 +1,21 @@
+string longest_palindrome_prefix(string s)
+    {
+        string kmprev = s;
+        reverse(kmprev.begin(), kmprev.end());
+        string kmp = s + "#" + kmprev;
+
+        vector<ll> lps(kmp.size(), 0);
+
+        for (ll i = 1; i < lps.size(); ++i)
+        {
+            ll prev_idx = lps[i - 1];
+
+            while (prev_idx > 0 && kmp[i] != kmp[prev_idx])
+            {
+                prev_idx = lps[prev_idx - 1];
+            }
+
+            lps[i] = prev_idx + (kmp[i] == kmp[prev_idx] ? 1 : 0);
+        }
+        return s.substr(0,lps[lps.size() - 1]);
+    }
