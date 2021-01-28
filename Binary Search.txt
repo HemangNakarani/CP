@@ -1,5 +1,5 @@
 First : first x for which p(x) is true;
-First : last x for which p(x) is false
+Second : last x for which p(x) is false
 
 int BS_starting_pos_of_target(vector<int>& nums,int target)
     {
