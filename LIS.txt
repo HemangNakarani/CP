@@ -16,3 +16,22 @@ ll lis(vector<ll>& v , ll n)
 
     return *max_element(dp,dp+n);
 }
+
+
+// LIS in NlogN
+int main()
+{
+    int arr[] = {4, 4, 5, 7, 6};
+    int n = 5;
+    multiset<int> s;
+    multiset<int>::iterator it;
+    for(int i=0;i<n;i++)
+    {
+        s.insert(arr[i]);
+        it = upper_bound(s.begin(), s.end(), arr[i]);
+        if(it!=s.end()) 
+            s.erase(it);
+    }
+    cout<<s.size()<<endl;
+    return 0;
+}
