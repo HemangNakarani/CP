@@ -18,7 +18,7 @@ ll lis(vector<ll>& v , ll n)
 }
 
 
-// LIS in NlogN
+// LIS in NlogN - non-strictly increasing
 int main()
 {
     int arr[] = {4, 4, 5, 7, 6};
@@ -31,6 +31,26 @@ int main()
         it = upper_bound(s.begin(), s.end(), arr[i]);
         if(it!=s.end()) 
             s.erase(it);
+    }
+    cout<<s.size()<<endl;
+    return 0;
+}
+
+
+
+// LIS in NlogN - strictly increasing
+int main()
+{
+    int arr[] = {4, 4, 5, 7, 6};
+    int n = 5;
+    set<int> s;
+    set<int>::iterator it;
+    for(int i=0;i<n;i++)
+    {
+        it = lower_bound(s.begin(), s.end(), arr[i]);
+        if(it!=s.end()) 
+            s.erase(it);
+        s.insert(arr[i]);
     }
     cout<<s.size()<<endl;
     return 0;
